@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      {/* HEADER */}
+  
       <Header />
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
-        {/* SEARCH SIDE BAR */}
+  
         <SearchSideBar />
-        {/* SEARCH SIDE BAR */}
+
         <div className="w-5/6">
           <RestauranCard />
         </div>
