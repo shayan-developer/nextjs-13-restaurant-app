@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as jose from "jose";
+import { getCookie, getCookies } from "cookies-next";
+import { cookies } from 'next/headers'
 export async function middleware(req: NextRequest, res: NextResponse) {
   const bearerToken = req.headers.get("authorization") as string;
 
@@ -32,5 +34,5 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 }
 
 export const config = {
-  matcher: ["/api/auth/me"],
+  matcher: ["/api/auth/me"],  //"Matching Paths"
 };

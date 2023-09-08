@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { getCookie } from "cookies-next";
 
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
@@ -9,6 +10,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  
+  
   const bearerToken = req.headers["authorization"] as string;
   const token = bearerToken.split(" ")[1];
 
