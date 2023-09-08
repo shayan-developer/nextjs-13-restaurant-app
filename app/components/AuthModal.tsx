@@ -7,6 +7,8 @@ import AuthModalInputs from "./AuthModalInputs";
 // import useAuth from "../../hooks/useAuth";
 // import { AuthenticationContext } from "../context/AuthContext";
 import { Alert, CircularProgress } from "@mui/material";
+import useAuth from "../../hooks/useAuth";
+import { AuthenticationContext } from "../context/AuthContext";
 
 const style = {
   position: "absolute" as "absolute",
@@ -24,8 +26,8 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-//   const { signin, signup } = useAuth();
-//   const { loading, data, error } = useContext(AuthenticationContext);
+  const { signin, signup } = useAuth();
+  const { loading, data, error } = useContext(AuthenticationContext);
 
   const renderContent = (signinContent: string, signupContent: string) => {
     return isSignin ? signinContent : signupContent;
@@ -71,11 +73,11 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
   }, [inputs]);
 
   const handleClick = () => {
-    // if (isSignin) {
-    //   signin({ email: inputs.email, password: inputs.password }, handleClose);
-    // } else {
-    //   signup(inputs, handleClose);
-    // }
+    if (isSignin) {
+      signin({ email: inputs.email, password: inputs.password }, handleClose);
+    } else {
+      signup(inputs, handleClose);
+    }
   };
 
   return (
@@ -96,17 +98,17 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {false ? (
+          {loading ? (
             <div className="py-24 px-2 h-[600px] flex justify-center">
               <CircularProgress />
             </div>
           ) : (
             <div className="p-2 h-[600px]">
-              {/* {error ? (
+              {error ? (
                 <Alert severity="error" className="mb-4">
                   {error}
                 </Alert>
-              ) : null} */}
+              ) : null}
               <div className="uppercase font-bold text-center pb-2 border-b mb-2">
                 <p className="text-sm">
                   {renderContent("Sign In", "Create Account")}

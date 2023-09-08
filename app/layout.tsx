@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 import NavBar from "./components/NavBar";
+import AuthContext from "./context/AuthContext";
 
 
 
@@ -18,12 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
+        <AuthContext>
         <main className="bg-gray-100 min-h-screen w-screen">
           <main className="max-w-screen-2xl m-auto bg-white">
             <NavBar />
             {children}
           </main>
         </main>
+        </AuthContext>
       </body>
     </html>
   );
