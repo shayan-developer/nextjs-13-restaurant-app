@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-
+import "react-datepicker/dist/react-datepicker.css";
 import NavBar from "./components/NavBar";
 import AuthContext from "./context/AuthContext";
 
